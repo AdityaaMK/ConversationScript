@@ -28,10 +28,16 @@ for i in range(1, sheet.nrows):
     resident_i["name"] = sheet.cell_value(i, 2)
     resident_i["building"] = sheet.cell_value(i, 3)
 
-    if resident_i["building"] in ["BRN", "SMT", "HRS"]:
-        resident_i["area"] = "BSH"
+    if resident_i["building"] in ["BRN", "HRS"]:
+        resident_i["area"] = "Brown, Harris"
+    elif resident_i["building"] in ["NAN", "NAW"]:
+        resident_i["area"] = "North Ave North, West"
+    elif resident_i["building"] in ["NAE"]:
+        resident_i["area"] = "North Ave East"
+    elif resident_i["building"] in ["NAS"]:
+        resident_i["area"] = "North Ave South"
     else:
-        resident_i["area"] = sheet.cell_value(i, 3)
+        raise Exception("Building in spreadsheet must be one of the following: BRN, HRS, NAN, NAW, NAE, NAS. Make sure to check your spelling")
 
     resident_i["floor"] = str(int(sheet.cell_value(i, 4)))
     resident_i["apartment/room"] = str(int(sheet.cell_value(i, 5)))

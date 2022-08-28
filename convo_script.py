@@ -10,10 +10,8 @@ import chromedriver_binary
 # from service import Service
 import traceback
 
-
-#TODO  Change which link you are 
-is_nav = True
-want_email = True
+#TODO
+want_email = False 
 
 # data files
 import excel_reader as er
@@ -24,14 +22,13 @@ from general_ids import *
 # global vars and constants
 previous = None
 EXTIME = 3
-nav_link = 'https://gatech.co1.qualtrics.com/jfe/form/SV_4U8wGXJRFOMekfk' # NAV/BSH
-east_link = "https://gatech.co1.qualtrics.com/jfe/form/SV_72O9mThAOKPFYeq" # east campus
+nav_link = 'https://gatech.co1.qualtrics.com/jfe/form/SV_abYKCk3uqiqmRSe' # NAV and Brown/Harris
 
-link = None
-if is_nav:
-    link = nav_link
-else:
-    link = east_link
+# link = None
+# if is_nav:
+link = nav_link
+# else:
+#     link = east_link
 
 def next_page():
     next_button = WebDriverWait(browser, EXTIME).until(EC.element_to_be_clickable((By.NAME, "NextButton")))
@@ -92,8 +89,8 @@ def main():
             if want_email:
                 email = wait_type(ids['ra_email'], resident['ra_email'])
 
-            if is_nav:
-                next_page()
+            # if is_nav:
+            next_page()
 
             res_name = wait_type(ids['resident'], resident['name'])
             b = wait_click(buildings[resident['building']])
