@@ -12,7 +12,7 @@ count = 0
 
 # Starts row 0 col 0: so subtract 1 from each
 RESDIENTS = [] # A array of dictionaries to each conversation
-for i in range(1, sheet.nrows):
+for i in range(3, sheet.nrows): #Start at idx 3(row 4) to match up with new instructions on conversations.xlsx spreadsheet
     resident_i = {}
 
     name = sheet.cell_value(i, 0)
