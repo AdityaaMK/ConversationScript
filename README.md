@@ -2,8 +2,7 @@
 Reads a qualtrics form and fills out conversation data with residents.
 CURRENTLY ONLY WORKS FOR NORTH AVE AREA AND BROWN AND HARRIS
 
-# Update
-I have found a better way to install the chrome driver using with using the python package manager. Please see below to find new installation instructions.
+READ ENTIRE README!!
 
 # Setup and Usage
 
@@ -11,17 +10,23 @@ I have found a better way to install the chrome driver using with using the pyth
 On this page, find the code button and then either download the zip file or use git clone in your terminal to place the repository where you please.
 
 **Fill out Conversations Spreadsheet**
-Make sure to follow the instructions on the spreadsheet and then delete row 2(instructions).
+Make sure to follow the instructions on the spreadsheet!!
 
 **Initial setup- Only do this one time**  
 1. Navigate to the ConversationScript directory
 2. Create a python virtual environment: Run `python3 -m venv ./ra-venv` This will create the virtual environment called ra-venv.
-3. Activate your virtual environment: Run `. ./ra-venv/bin/activate`
+2. Activate your virtual environment: 
+    - MAC OS/LINUX: `. ./ra-venv/bin/activate` 
+    - Windows users using PowerShell:  `ra-venv\Scripts\Activate.ps1`
+    - Windows users using Command Prompt: `ra-venv\Scripts\activate`
 4. Install dependencies: `pip install -r requirements.txt`
 
 **Usage - do this every time**  
 1. Navigate to the ConversationScript directory
-2. Activate your virtual environment: `. ./ra-venv/bin/activate`
+2. Activate your virtual environment: 
+    - MAC OS/LINUX: `. ./ra-venv/bin/activate`
+    - Windows users using PowerShell:  `ra-venv\Scripts\Activate.ps1`
+    - Windows users using Command Prompt: `ra-venv\Scripts\activate`
 3. Fill out spreadsheet
 4. Run `python3 convo_script.py`
 
