@@ -5,10 +5,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium import webdriver
-from chromedriver_py import binary_path 
-from service import Service
+# import chromedriver_binary
+# from service import Service
 import traceback
 import json
+import time
 
 ids = {
     
@@ -25,15 +26,18 @@ ids = {
 
 
 
-service_object = Service(binary_path)
-browser = webdriver.Chrome(executable_path=binary_path)
+# service_object = Service(binary_path)
+# browser = webdriver.Chrome(executable_path=binary_path)
+
+import chromedriver_binary
+browser = webdriver.Chrome()
 
 #Change this if connection is slow
 EXTIME = 10
 previous = None
 
 
-link = "https://gatech.co1.qualtrics.com/jfe/form/SV_4U8wGXJRFOMekfk"
+link = "https://gatech.co1.qualtrics.com/jfe/form/SV_abYKCk3uqiqmRSe"
 
 
 def nextPage():
@@ -77,7 +81,7 @@ def wait_for_page():
 def list_options(tag):
 
     WebDriverWait(browser, EXTIME).until(EC.presence_of_all_elements_located((By.TAG_NAME, tag)))
-    options = browser.find_elements_by_tag_name(tag)
+    options = browser.find_elements(by=By.TAG_NAME, value=tag)
     out = {}
     for opt in options:
         
@@ -137,7 +141,7 @@ def get_ids():
 
         id_click(arb(ra_ids))
         nextPage()
-
+        wait_stale()
         id_type(ids["resident"], "test")
         buildings_ids = list_options("option")
         all_buildings.update(buildings_ids)
@@ -167,12 +171,14 @@ def get_ids():
                 backPage()
 
             backPage()
+            wait_stale()
 
         # print(all_floor_ids)
         backPage()
+        wait_stale()
         backPage()
     
-    with open('NAVids.py', 'w') as convert_file:
+    with open('NAVidsNew.py', 'w') as convert_file:
         convert_file.write("areas = ")
         convert_file.write(json.dumps(all_areas))
         convert_file.write("\nras = ")
